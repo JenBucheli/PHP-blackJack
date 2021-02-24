@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 require_once 'Blackjack.php';
 require_once 'Deck.php';
+require_once 'Card.php';
 
 class Player
 {
@@ -23,16 +24,16 @@ class Player
     }
     //methods
 
-    //to get a card from the deck
+    //to get 2 cards from the deck
     public function hit (Deck $deck)
     {
-        array_push($this->cards,$deck->drawCard(),$deck->drawCard());
-        if($this->getScore()>21){
+        array_push($this->cards,$deck->drawCard());
+
+        if($this->getScore()>21) {
             return $this->lost=true;
         }
-
-
     }
+
     //player stops trying in the game, it's equal to his lost.
     public function surrender ()
     {
@@ -46,13 +47,15 @@ class Player
             $score= $score+$card->getValue();
         }
         return $score;
-
     }
 
     public function hasLost ()
     {
         $this->lost = true;
     }
+
+
+
 }
 
 
